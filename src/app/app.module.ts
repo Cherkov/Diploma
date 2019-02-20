@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,8 +7,12 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
-import { PolicyListComponent } from './policy-list/policy-list.component';
+import { PolicyListComponent } from './authentification/policy-list.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MaterialModule } from './material/material.module';
+import { UploadFileService } from './upload-file.service';
+import { AngularFireStorage } from 'angularfire2/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +22,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MaterialModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AngularFireAuth, UploadFileService, AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
